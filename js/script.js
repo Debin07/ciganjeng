@@ -4,18 +4,18 @@ let current = 0;
 let dotsContainer = document.querySelector(".dots");
 
 // BUAT DOT
-slides.forEach((_, i)=>{
+slides.forEach((_, i) => {
   let dot = document.createElement("span");
   dot.classList.add("dot");
-  if(i===0) dot.classList.add("active");
+  if (i === 0) dot.classList.add("active");
 
-  dot.onclick = ()=>showSlide(i);
+  dot.onclick = () => showSlide(i);
   dotsContainer.appendChild(dot);
 });
 
 let dots = document.querySelectorAll(".dot");
 
-function showSlide(i){
+function showSlide(i) {
   slides[current].classList.remove("active");
   dots[current].classList.remove("active");
 
@@ -26,31 +26,45 @@ function showSlide(i){
 }
 
 // NEXT
-document.querySelector(".next").onclick=()=>{
-  showSlide((current+1)%slides.length);
+document.querySelector(".next").onclick = () => {
+  showSlide((current + 1) % slides.length);
 };
 
 // PREV
-document.querySelector(".prev").onclick=()=>{
-  showSlide((current-1+slides.length)%slides.length);
+document.querySelector(".prev").onclick = () => {
+  showSlide((current - 1 + slides.length) % slides.length);
 };
 
 // AUTO
-setInterval(()=>{
-  showSlide((current+1)%slides.length);
-},5000);
-
+setInterval(() => {
+  showSlide((current + 1) % slides.length);
+}, 5000);
 
 // NAVBAR SCROLL EFFECT
-window.addEventListener("scroll",()=>{
+window.addEventListener("scroll", () => {
   let header = document.querySelector(".header");
   let navbar = document.querySelector(".navbar");
 
-  if(window.scrollY > 50){
+  if (window.scrollY > 50) {
     header.classList.add("scrolled");
     navbar.classList.add("scrolled");
-  }else{
+  } else {
     header.classList.remove("scrolled");
     navbar.classList.remove("scrolled");
   }
 });
+
+const menuToggle = document.querySelector(".menu-toggle");
+const navRight = document.querySelector(".nav-right");
+const navLeft = document.querySelector(".nav-left");
+
+menuToggle.onclick = function () {
+  navRight.classList.toggle("active");
+  navLeft.classList.toggle("active");
+
+  if (navRight.classList.contains("active")) {
+    menuToggle.innerHTML = "✕";
+  } else {
+    menuToggle.innerHTML = "☰";
+  }
+};
