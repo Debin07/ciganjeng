@@ -1,20 +1,29 @@
-document.addEventListener("DOMContentLoaded", () => {
-  loadComponent("head", "../components/head.html");
-  loadComponent("navbar", "../components/navbar.html");
-  loadComponent("footer", "../components/footer.html");
+document.addEventListener("DOMContentLoaded", async () => {
+  // ⚠️ gunakan path ABSOLUTE (WAJIB di Vercel)
+  await loadComponent("head", "/components/head.html");
+  await loadComponent("navbar", "/components/navbar.html");
+  await loadComponent("footer", "/components/footer.html");
 
+  // ⚠️ jalankan SETELAH component selesai dimuat
   initSlider();
   initNavbarScroll();
   initMenuToggle();
+  initGallery();
+  initContactForm();
 });
 
-function loadComponent(id, file) {
-  fetch(file)
-    .then((res) => res.text())
-    .then((data) => {
-      const el = document.getElementById(id);
-      if (el) el.innerHTML = data;
-    });
+// 🔥 FIX: pakai async + error handling
+async function loadComponent(id, file) {
+  try {
+    const res = await fetch(file);
+    if (!res.ok) throw new Error(`Gagal load ${file}`);
+
+    const data = await res.text();
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = data;
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 function initSlider() {
@@ -24,14 +33,15 @@ function initSlider() {
   let current = 0;
   let dotsContainer = document.querySelector(".dots");
 
-  // BUAT DOT
   if (dotsContainer) {
+    dotsContainer.innerHTML = ""; // 🔥 reset biar tidak dobel
+
     slides.forEach((_, i) => {
       let dot = document.createElement("span");
       dot.classList.add("dot");
       if (i === 0) dot.classList.add("active");
 
-      dot.onclick = () => showSlide(i);
+      dot.addEventListener("click", () => showSlide(i));
       dotsContainer.appendChild(dot);
     });
   }
@@ -51,15 +61,15 @@ function initSlider() {
   const nextBtn = document.querySelector(".next");
   const prevBtn = document.querySelector(".prev");
 
-  if (nextBtn && prevBtn) {
-    nextBtn.onclick = () => {
-      showSlide((current + 1) % slides.length);
-    };
+  if (nextBtn)
+    nextBtn.addEventListener("click", () =>
+      showSlide((current + 1) % slides.length)
+    );
 
-    prevBtn.onclick = () => {
-      showSlide((current - 1 + slides.length) % slides.length);
-    };
-  }
+  if (prevBtn)
+    prevBtn.addEventListener("click", () =>
+      showSlide((current - 1 + slides.length) % slides.length)
+    );
 
   setInterval(() => {
     showSlide((current + 1) % slides.length);
@@ -71,7 +81,7 @@ function initNavbarScroll() {
     let header = document.querySelector(".header");
     let navbar = document.querySelector(".navbar");
 
-    if (!navbar || !header) return; // ❗ penting
+    if (!navbar || !header) return;
 
     if (window.scrollY > 50) {
       header.classList.add("scrolled");
@@ -83,19 +93,22 @@ function initNavbarScroll() {
   });
 }
 
+// 🔥 FIX PALING PENTING (pakai event delegation)
 function initMenuToggle() {
-  const menuToggle = document.querySelector(".menu-toggle");
-  const navRight = document.querySelector(".nav-right");
-  const navLeft = document.querySelector(".nav-left");
+  document.addEventListener("click", function (e) {
+    const toggle = e.target.closest(".menu-toggle");
+    if (!toggle) return;
 
-  if (!menuToggle || !navRight || !navLeft) return; // ❗ penting
+    const navRight = document.querySelector(".nav-right");
+    const navLeft = document.querySelector(".nav-left");
 
-  menuToggle.onclick = function () {
+    if (!navRight || !navLeft) return;
+
     navRight.classList.toggle("active");
     navLeft.classList.toggle("active");
 
-    menuToggle.innerHTML = navRight.classList.contains("active") ? "✕" : "☰";
-  };
+    toggle.innerHTML = navRight.classList.contains("active") ? "✕" : "☰";
+  });
 }
 
 function initGallery() {
@@ -104,22 +117,20 @@ function initGallery() {
 
   if (buttons.length === 0) return;
 
-  // FILTER
   buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
-      document
-        .querySelector(".galeri-filter .active")
-        .classList.remove("active");
+      const active = document.querySelector(".galeri-filter .active");
+      if (active) active.classList.remove("active");
+
       btn.classList.add("active");
 
       const filter = btn.getAttribute("data-filter");
 
       items.forEach((item) => {
-        if (filter === "all" || item.dataset.category === filter) {
-          item.style.display = "block";
-        } else {
-          item.style.display = "none";
-        }
+        item.style.display =
+          filter === "all" || item.dataset.category === filter
+            ? "block"
+            : "none";
       });
     });
   });
@@ -128,14 +139,18 @@ function initGallery() {
   const modalImg = document.getElementById("modal-img");
   const close = document.querySelector(".close");
 
+  if (!modal || !modalImg || !close) return;
+
   items.forEach((item) => {
-    item.onclick = () => {
+    item.addEventListener("click", () => {
       modal.style.display = "block";
       modalImg.src = item.querySelector("img").src;
-    };
+    });
   });
 
-  close.onclick = () => (modal.style.display = "none");
+  close.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
 }
 
 function initContactForm() {
