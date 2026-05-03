@@ -1,10 +1,77 @@
 <!DOCTYPE html>
 <html lang="id">
-  <div id="head"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Desa Ciganjeng | Pemerintahan</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+  </head>
 
   <body>
     <header class="header">
-      <div id="navbar"></div>
+      <nav class="navbar">
+        <div class="nav-left">
+          <a href="/">Beranda</a>
+          <a href="/pages/profil.html">Profil Desa</a>
+          <a href="/pages/pemerintahan.html">Pemerintahan</a>
+          <a href="/pages/data_desa.html">Data Desa</a>
+        </div>
+
+        <div class="nav-center">
+          <div class="logo-box">
+            <svg
+              width="240"
+              height="280"
+              viewBox="0 0 240 280"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                <filter
+                  id="shadow"
+                  x="-50%"
+                  y="-50%"
+                  width="200%"
+                  height="200%"
+                >
+                  <feDropShadow
+                    dx="0"
+                    dy="10"
+                    stdDeviation="15"
+                    flodd-color="#000"
+                    flood-opacity="0.15"
+                  />
+                </filter>
+              </defs>
+              <path
+                d="M20 0 L220 0 L220 170 Q220 260 120 260 Q20 260 20 170 Z"
+                fill="white"
+                filter="url(#shadow)"
+              />
+            </svg>
+
+            <img src="/img/pangandaran.svg" loading="lazy" class="logo-img" />
+            <h2>CIGANJENG</h2>
+          </div>
+        </div>
+
+        <div class="nav-right">
+          <a href="/pages/potensi_desa.html">Potensi Desa</a>
+          <a href="/pages/berita.html">Berita</a>
+          <a href="/pages/galeri.html">Galeri</a>
+          <a href="/pages/kontak.html">Kontak</a>
+          <button class="btn">Layanan Warga</button>
+        </div>
+
+        <div class="menu-toggle">☰</div>
+      </nav>
     </header>
 
     <section class="struktur premium">
@@ -13,7 +80,7 @@
           <!-- Kepala Desa -->
           <div class="level center">
             <div class="card">
-              <img src="/img/kepdes.jpg" />
+              <img src="/img/kepdes.jpg" loading="lazy" />
               <h4>IMANG WARDIMAN</h4>
               <span>Kepala Desa</span>
             </div>
@@ -24,7 +91,7 @@
           <!-- Sekretaris -->
           <div class="level center">
             <div class="card">
-              <img src="/img/noimg.png" />
+              <img src="/img/noimg.png" loading="lazy" />
               <h4>YUYUK RUHIJAR</h4>
               <span>Sekretaris Desa</span>
             </div>
@@ -35,19 +102,19 @@
           <!-- Bawah -->
           <div class="level horizontal">
             <div class="card">
-              <img src="/img/noimg.png" />
+              <img src="/img/noimg.png" loading="lazy" />
               <h4>ASEP PERMANA</h4>
               <span>Kasi Pemerintahan</span>
             </div>
 
             <!-- <div class="card">
-              <img src="/img/aparat3.jpg" />
+              <img src="/img/aparat3.jpg" loading="lazy"/>
               <h4>Nama</h4>
               <span>Kaur Umum</span>
             </div> -->
 
             <div class="card">
-              <img src="/img/noimg.png" />
+              <img src="/img/noimg.png" loading="lazy" />
               <h4>KEMIH</h4>
               <span>Kasi Kesra</span>
             </div>
@@ -56,7 +123,50 @@
       </div>
     </section>
 
-    <div id="footer"></div>
-    <script src="/js/script.js"></script>
+    <svg
+      style="margin-bottom: -5%"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1440 320"
+    >
+      <path
+        fill="#0f6d2d"
+        fill-opacity="1"
+        d="M0,96L34.3,112C68.6,128,137,160,206,149.3C274.3,139,343,85,411,74.7C480,64,549,96,617,96C685.7,96,754,64,823,90.7C891.4,117,960,203,1029,202.7C1097.1,203,1166,117,1234,90.7C1302.9,64,1371,96,1406,112L1440,128L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"
+      ></path>
+    </svg>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-box">
+          <img src="/img/pangandaran.svg" loading="lazy" class="logo-img" />
+          <h3>
+            Kecamatan Padaherang Kabupaten Pangandaran Propinsi Jawa Barat.
+          </h3>
+        </div>
+
+        <div class="footer-box">
+          <h3>Kontak Kami</h3>
+          <p><i class="ri-mail-fill"></i> desaciganjeng@gmail.com</p>
+        </div>
+
+        <div class="footer-box">
+          <h3>Tautan Cepat</h3>
+          <a href="#">Profil Desa</a><br />
+          <a href="#">Potensi Desa</a><br />
+          <a href="#">Galeri</a>
+        </div>
+
+        <div class="footer-box">
+          <h3>Ikuti Kami</h3>
+          <a href="#"><i class="ri-instagram-fill"></i></a>
+          <a href="#"><i class="ri-facebook-circle-fill"></i></a>
+          <a href="#"><i class="ri-whatsapp-fill"></i></a><br />
+        </div>
+      </div>
+
+      <div class="copyright">© 2024 Desa Ciganjeng. All Rights Reserved.</div>
+    </footer>
+
+    <script src="/js/script.js" defer></script>
   </body>
 </html>
