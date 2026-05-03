@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+  <div id="head"></div>
+
+  <body>
+    <header class="header">
+      <div id="navbar"></div>
+    </header>
+
+    <section class="galeri">
+      <div class="pcontainer">
+        <div class="section-title">
+          <h2>Galeri Desa</h2>
+          <div class="line"></div>
+          <p>Kegiatan dan suasana Desa Ciganjeng</p>
+        </div>
+
+        <!-- FILTER -->
+        <div class="galeri-filter">
+          <button class="active" data-filter="all">Semua</button>
+          <button data-filter="kegiatan">Kegiatan</button>
+          <button data-filter="alam">Alam</button>
+          <button data-filter="umkm">UMKM</button>
+        </div>
+
+        <!-- GRID -->
+        <div class="galeri-grid">
+          <div class="galeri-item" data-category="kegiatan">
+            <img src="https://picsum.photos/400/300?random=1" />
+          </div>
+
+          <div class="galeri-item" data-category="alam">
+            <img src="https://picsum.photos/400/300?random=2" />
+          </div>
+
+          <div class="galeri-item" data-category="umkm">
+            <img src="https://picsum.photos/400/300?random=3" />
+          </div>
+
+          <div class="galeri-item" data-category="kegiatan">
+            <img src="https://picsum.photos/400/300?random=4" />
+          </div>
+
+          <div class="galeri-item" data-category="alam">
+            <img src="https://picsum.photos/400/300?random=5" />
+          </div>
+
+          <div class="galeri-item" data-category="umkm">
+            <img src="https://picsum.photos/400/300?random=6" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODAL -->
+    <div class="modal" id="modal">
+      <span class="close">&times;</span>
+      <img class="modal-content" id="modal-img" />
+    </div>
+
+    <div id="footer"></div>
+    <script src="/js/script.js"></script>
+  </body>
+</html>
